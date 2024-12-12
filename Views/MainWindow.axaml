@@ -1,0 +1,27 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="belonging.Views.MainWindow"
+        Title="Пример Avalonia"
+        WindowState="Maximized"
+        Width="400" Height="400">
+
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="4*" />
+			<ColumnDefinition Width="1*" />
+		</Grid.ColumnDefinitions>
+
+		<!-- Канва для рисования фигур -->
+		<Canvas Name="DrawingCanvas" Grid.Column="0" Background="LightGray" />
+
+		<!-- Панель с кнопками -->
+		<StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10">
+			<Button Content="Квадрат" Click="OnDrawSquareClick" Margin="5"/>
+			<Button Content="Пятиугольник" Click="OnDrawPentagonClick" Margin="5"/>
+			<Button Content="Шестиугольник" Click="OnDrawHexagonClick" Margin="5"/>
+			<Button Content="Восьмиугольник" Click="OnDrawOctagonClick" Margin="5"/>
+			<!-- Новая кнопка -->
+		</StackPanel>
+	</Grid>
+
+</Window>
