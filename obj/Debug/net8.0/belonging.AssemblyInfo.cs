@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("belonging")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+74d39731f82fe1c9245927ea49cf701be19b26ff")]
 [assembly: System.Reflection.AssemblyProductAttribute("belonging")]
 [assembly: System.Reflection.AssemblyTitleAttribute("belonging")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

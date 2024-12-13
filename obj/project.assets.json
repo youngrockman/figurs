@@ -1474,23 +1474,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\prdb\\.nuget\\packages\\": {},
+    "C:\\Users\\IVAN\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\prdb\\source\\repos\\belonging\\belonging.csproj",
+      "projectUniqueName": "C:\\Users\\IVAN\\Source\\Repos\\figurs\\belonging.csproj",
       "projectName": "belonging",
-      "projectPath": "C:\\Users\\prdb\\source\\repos\\belonging\\belonging.csproj",
-      "packagesPath": "C:\\Users\\prdb\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\prdb\\source\\repos\\belonging\\obj\\",
+      "projectPath": "C:\\Users\\IVAN\\Source\\Repos\\figurs\\belonging.csproj",
+      "packagesPath": "C:\\Users\\IVAN\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\IVAN\\Source\\Repos\\figurs\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\prdb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\IVAN\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1499,6 +1499,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

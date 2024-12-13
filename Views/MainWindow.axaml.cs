@@ -16,9 +16,9 @@ namespace belonging.Views
         private readonly List<Shape> _shapes = new List<Shape>();
         private Shape? _draggedShape;
         private Point _dragStart;
-        private TextBlock? _messageTextBlock; // Ссылка на текущее сообщение
+        private TextBlock? _messageTextBlock;
 
-        // Статический объект Random для генерации случайных чисел
+        // Генератор случайных чисел для позиционирования фигур
         private static readonly Random _random = new Random();
 
         public MainWindow()
@@ -26,7 +26,7 @@ namespace belonging.Views
             InitializeComponent();
             _canvas = this.FindControl<Canvas>("DrawingCanvas");
 
-            // Установка обработчиков событий в коде позади 
+            // Установка обработчиков событий для взаимодействия с холстом
             _canvas.PointerPressed += OnPointerPressed;
             _canvas.PointerMoved += OnPointerMoved;
             _canvas.PointerReleased += OnPointerReleased;
@@ -39,7 +39,7 @@ namespace belonging.Views
             // Удаляем обработчик события, чтобы он не вызывался повторно
             _canvas.Loaded -= OnCanvasLoaded;
 
-            // Добавляем фигуры в случайных местах при запуске
+            
             AddRandomShape(CreateSquare());
             AddRandomShape(CreatePentagon());
             AddRandomShape(CreateHexagon());
@@ -48,6 +48,7 @@ namespace belonging.Views
 
         private void AddRandomShape(Shape shape)
         {
+            
             var randomPosition = GenerateRandomPosition(shape);
             Canvas.SetLeft(shape, randomPosition.X);
             Canvas.SetTop(shape, randomPosition.Y);
@@ -56,9 +57,10 @@ namespace belonging.Views
 
         private Rectangle CreateSquare()
         {
+            
             return new Rectangle
             {
-                Width = 80, // Уменьшенный размер
+                Width = 80,
                 Height = 80,
                 Fill = Brushes.Blue
             };
@@ -66,15 +68,16 @@ namespace belonging.Views
 
         private Polygon CreatePentagon()
         {
+            
             return new Polygon
             {
                 Points = new Avalonia.Collections.AvaloniaList<Point>
                 {
-                    new Point(40, 0),   // Верхняя вершина 
-                    new Point(80, 30),  // Правая верхняя 
-                    new Point(65, 80),  // Правая нижняя 
-                    new Point(15, 80),  // Левая нижняя 
-                    new Point(0, 30)    // Левая верхняя 
+                    new Point(40, 0),
+                    new Point(80, 30),
+                    new Point(65, 80),
+                    new Point(15, 80),
+                    new Point(0, 30)
                 },
                 Fill = Brushes.Green
             };
@@ -82,16 +85,17 @@ namespace belonging.Views
 
         private Polygon CreateHexagon()
         {
+            
             return new Polygon
             {
                 Points = new Avalonia.Collections.AvaloniaList<Point>
                 {
-                    new Point(40, 0),   // Верхняя центральная 
-                    new Point(80, 20),  // Правая верхняя 
-                    new Point(80, 60),  // Правая нижняя 
-                    new Point(40, 80),  // Нижняя центральная 
-                    new Point(0, 60),   // Левая нижняя 
-                    new Point(0, 20)    // Левая верхняя 
+                    new Point(40, 0),
+                    new Point(80, 20),
+                    new Point(80, 60),
+                    new Point(40, 80),
+                    new Point(0, 60),
+                    new Point(0, 20)
                 },
                 Fill = Brushes.Red
             };
@@ -99,18 +103,19 @@ namespace belonging.Views
 
         private Polygon CreateOctagon()
         {
+            
             return new Polygon
             {
                 Points = new Avalonia.Collections.AvaloniaList<Point>
                 {
-                    new Point(30, 0),   // Верхняя левая 
-                    new Point(50, 0),   // Верхняя правая 
-                    new Point(80, 30),  // Правая верхняя 
-                    new Point(80, 50),  // Правая нижняя 
-                    new Point(50, 80),  // Нижняя правая 
-                    new Point(30, 80),  // Нижняя левая 
-                    new Point(0, 50),   // Левая нижняя 
-                    new Point(0, 30)    // Левая верхняя 
+                    new Point(30, 0),
+                    new Point(50, 0),
+                    new Point(80, 30),
+                    new Point(80, 50),
+                    new Point(50, 80),
+                    new Point(30, 80),
+                    new Point(0, 50),
+                    new Point(0, 30)
                 },
                 Fill = Brushes.Purple
             };
@@ -118,12 +123,14 @@ namespace belonging.Views
 
         private void AddShape(Shape shape)
         {
+            // Добавляем фигуру в список и на холст
             _shapes.Add(shape);
             _canvas.Children.Add(shape);
         }
 
         private void ClearShapes()
         {
+            
             _shapes.Clear();
             _canvas.Children.Clear();
         }
@@ -133,6 +140,7 @@ namespace belonging.Views
             var point = e.GetPosition(_canvas);
             _draggedShape = null;
 
+            // Проверяем, на какую фигуру нажал пользователь
             foreach (var shape in _shapes)
             {
                 if (shape.Bounds.Contains(point))
@@ -149,7 +157,7 @@ namespace belonging.Views
             }
             else
             {
-                // Определяем тип фигуры и показываем соответствующее сообщение
+                
                 string shapeName = _draggedShape is Rectangle ? "квадрат" :
                                    _draggedShape is Polygon polygon ? (polygon.Points.Count == 5 ? "пятиугольник" :
                                    polygon.Points.Count == 6 ? "шестиугольник" : "восьмиугольник") :
@@ -163,13 +171,14 @@ namespace belonging.Views
         {
             if (_draggedShape != null)
             {
+                // Перемещаем фигуру вслед за указателем мыши
                 var currentPoint = e.GetPosition(_canvas);
                 var delta = currentPoint - _dragStart;
 
                 var newLeft = Canvas.GetLeft(_draggedShape) + delta.X;
                 var newTop = Canvas.GetTop(_draggedShape) + delta.Y;
 
-                // Проверка границ 
+                // Проверка границ холста, чтобы фигура не выходила за его пределы
                 if (newLeft < 0) newLeft = 0;
                 if (newTop < 0) newTop = 0;
                 if (newLeft + _draggedShape.Bounds.Width > _canvas.Bounds.Width) newLeft = _canvas.Bounds.Width - _draggedShape.Bounds.Width;
@@ -189,14 +198,14 @@ namespace belonging.Views
 
         private async void ShowMessage(string message)
         {
-            // Удаляем старое сообщение, если оно есть
+            
             if (_messageTextBlock != null)
             {
                 _canvas.Children.Remove(_messageTextBlock);
                 _messageTextBlock = null;
             }
 
-            // Создаем новое сообщение
+            
             _messageTextBlock = new TextBlock
             {
                 Text = message,
@@ -205,16 +214,16 @@ namespace belonging.Views
                 HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
                 VerticalAlignment = Avalonia.Layout.VerticalAlignment.Top,
                 TextAlignment = Avalonia.Media.TextAlignment.Center,
-                Margin = new Thickness(0, 30, 0, 0) // Отступ сверху
+                Margin = new Thickness(0, 30, 0, 0)
             };
 
-            // Фиксированная позиция по центру сверху
+            // Выравниваем по центру наше сообщение
             Canvas.SetLeft(_messageTextBlock, (_canvas.Bounds.Width - _messageTextBlock.Bounds.Width) / 2);
             Canvas.SetTop(_messageTextBlock, 0);
 
             _canvas.Children.Add(_messageTextBlock);
 
-            // Удаляем сообщение через 2 секунды
+            // Удаляем сообщение через 3 сек
             await Task.Delay(3000);
             if (_messageTextBlock != null)
             {
@@ -225,12 +234,13 @@ namespace belonging.Views
 
         private Point GenerateRandomPosition(Shape shape)
         {
+            // Случайная генерации фигуры и контроль выхода за пределы границ
             double x = _random.NextDouble() * (_canvas.Bounds.Width - shape.Bounds.Width);
             double y = _random.NextDouble() * (_canvas.Bounds.Height - shape.Bounds.Height);
             return new Point(x, y);
         }
 
-        // Обработчики событий для кнопок
+        
         private void OnDrawSquareClick(object? sender, RoutedEventArgs e)
         {
             ClearShapes();
@@ -256,11 +266,11 @@ namespace belonging.Views
             {
                 Points = new Avalonia.Collections.AvaloniaList<Point>
                 {
-                    new Point(40, 0),   // Верхняя вершина 
-                    new Point(80, 30),  // Правая верхняя 
-                    new Point(65, 80),  // Правая нижняя 
-                    new Point(15, 80),  // Левая нижняя 
-                    new Point(0, 30)    // Левая верхняя 
+                    new Point(40, 0),
+                    new Point(80, 30),
+                    new Point(65, 80),
+                    new Point(15, 80),
+                    new Point(0, 30)
                 },
                 Fill = Brushes.Green
             };
@@ -279,12 +289,12 @@ namespace belonging.Views
             {
                 Points = new Avalonia.Collections.AvaloniaList<Point>
                 {
-                    new Point(40, 0),   // Верхняя центральная 
-                    new Point(80, 20),  // Правая верхняя 
-                    new Point(80, 60),  // Правая нижняя 
-                    new Point(40, 80),  // Нижняя центральная 
-                    new Point(0, 60),   // Левая нижняя 
-                    new Point(0, 20)    // Левая верхняя 
+                    new Point(40, 0),
+                    new Point(80, 20),
+                    new Point(80, 60),
+                    new Point(40, 80),
+                    new Point(0, 60),
+                    new Point(0, 20)
                 },
                 Fill = Brushes.Red
             };
@@ -303,14 +313,13 @@ namespace belonging.Views
             {
                 Points = new Avalonia.Collections.AvaloniaList<Point>
                 {
-                    new Point(30, 0),   // Верхняя левая 
-                    new Point(50, 0),   // Верхняя правая 
-                    new Point(80, 30),  // Правая верхняя 
-                    new Point(80, 50),  // Правая нижняя 
-                    new Point(50, 80),  // Нижняя правая 
-                    new Point(30, 80),  // Нижняя левая 
-                    new Point(0, 50),   // Левая нижняя 
-                    new Point(0, 30)    // Левая верхняя 
+                    new Point(30, 0),
+                    new Point(50, 0),
+                    new Point(80, 30),
+                    new Point(80, 50),
+                    new Point(50, 80),
+                    new Point(30, 80),
+                    new Point(0, 50),
                 },
                 Fill = Brushes.Purple
             };
