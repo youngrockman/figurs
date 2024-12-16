@@ -20,7 +20,9 @@
 			<Button Content="Пятиугольник" Click="OnDrawPentagonClick" Margin="5"/>
 			<Button Content="Шестиугольник" Click="OnDrawHexagonClick" Margin="5"/>
 			<Button Content="Восьмиугольник" Click="OnDrawOctagonClick" Margin="5"/>
-			<!-- Новая кнопка -->
+		</StackPanel>
+		<StackPanel Margin="20" HorizontalAlignment ="Left">
+			<TextBlock Margin="0 5" FontSize="18" FontWeight="Bold">Добро пожаловать в мою программу с фигурами :)</TextBlock>
 		</StackPanel>
 	</Grid>
 

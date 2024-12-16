@@ -15,12 +15,12 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = belonging
-build_property.ProjectDir = C:\Users\IVAN\Source\Repos\figurs\
+build_property.ProjectDir = C:\Users\Class_Student\Source\Repos\figurs\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 
-[C:/Users/IVAN/Source/Repos/figurs/App.axaml]
+[C:/Users/Class_Student/Source/Repos/figurs/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/IVAN/Source/Repos/figurs/Views/MainWindow.axaml]
+[C:/Users/Class_Student/Source/Repos/figurs/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
